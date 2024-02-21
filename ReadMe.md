@@ -6,3 +6,6 @@
 ## Table
 * CREATE
 * DROP 
+
+## Column
+* CREATE
