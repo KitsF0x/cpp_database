@@ -12,7 +12,7 @@ private:
     std::vector<Table> tables;
 
 public:
-    Database(const std::string &name);
+    Database(const std::string &databaseName);
     std::string getName() const;
     void createTable(const std::string &tableName);
     std::size_t getTableCount() const;

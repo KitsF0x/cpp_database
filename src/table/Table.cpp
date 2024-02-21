@@ -1,6 +1,6 @@
 #include "Table.hpp"
 
-Table::Table(const std::string &name)
+Table::Table(const std::string &tableName)
 {
 }
 
@@ -9,9 +9,9 @@ std::string Table::getName() const
     return "MyTable";
 }
 
-void Table::addColumn(const std::string &column)
+void Table::addColumn(const std::string &columnName)
 {
-    columns.push_back(Column{column});
+    columns.push_back(Column{columnName});
 }
 
 std::size_t Table::getColumnCount() const

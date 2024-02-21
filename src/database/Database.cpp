@@ -1,6 +1,6 @@
 #include "Database.hpp"
 
-Database::Database(const std::string &name)
+Database::Database(const std::string &databaseName)
 {
     this->name = name;
 }

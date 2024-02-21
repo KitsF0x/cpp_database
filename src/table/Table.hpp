@@ -12,9 +12,9 @@ private:
     std::vector<Column> columns;
 
 public:
-    Table(const std::string &name);
+    Table(const std::string &tableName);
     std::string getName() const;
-    void addColumn(const std::string &column);
+    void addColumn(const std::string &columnName);
     std::size_t getColumnCount() const;
     Column getColumnByName(const std::string &columnName);
 };
