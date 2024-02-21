@@ -3,7 +3,7 @@
 #include "DatabaseNotFoundException.hpp"
 #include "Database.hpp"
 
-TEST(DatabaseTest, WhenCalled_CreateDatabase_ShouldIncrementDatabaseCounterByOne)
+TEST(DatabaseSystemTest, WhenCalled_CreateDatabase_ShouldIncrementDatabaseCounterByOne)
 {
     // Arrange
     DatabaseSystem system;
@@ -15,7 +15,7 @@ TEST(DatabaseTest, WhenCalled_CreateDatabase_ShouldIncrementDatabaseCounterByOne
     EXPECT_EQ(1, system.getDatabaseCount());
 }
 
-TEST(DatabaseTest, WhenCalled_DropDatabase_ShouldDecrementCounterByOne)
+TEST(DatabaseSystemTest, WhenCalled_DropDatabase_ShouldDecrementCounterByOne)
 {
     // Arrange
     DatabaseSystem system;
@@ -28,7 +28,7 @@ TEST(DatabaseTest, WhenCalled_DropDatabase_ShouldDecrementCounterByOne)
     EXPECT_EQ(0, system.getDatabaseCount());
 }
 
-TEST(DatabaseTest, WhenCalled_DropDatabase_WhenDatabaseDoesNotExist_ShouldThrowDatabaseNotFoundException)
+TEST(DatabaseSystemTest, WhenCalled_DropDatabase_WhenDatabaseDoesNotExist_ShouldThrowDatabaseNotFoundException)
 {
     // Arrange
     DatabaseSystem system;
@@ -37,7 +37,7 @@ TEST(DatabaseTest, WhenCalled_DropDatabase_WhenDatabaseDoesNotExist_ShouldThrowD
     EXPECT_THROW(system.dropDatabase("MyDatabase"), DatabaseNotFoundException);
 }
 
-TEST(DatabaseTest, WhenCalled_GetDatabaseByName_ShouldReturnDatabase)
+TEST(DatabaseSystemTest, WhenCalled_GetDatabaseByName_ShouldReturnDatabase)
 {
     // Arrange
     DatabaseSystem system;
@@ -50,7 +50,7 @@ TEST(DatabaseTest, WhenCalled_GetDatabaseByName_ShouldReturnDatabase)
     EXPECT_EQ("MyDatabase", database.getName());
 }
 
-TEST(DatabaseTest, WhenCalled_GetDatabaseByName_WhenDatabaseDoesNotExits_ShouldThrowDatabaseNotFoundException)
+TEST(DatabaseSystemTest, WhenCalled_GetDatabaseByName_WhenDatabaseDoesNotExits_ShouldThrowDatabaseNotFoundException)
 {
     // Arrange
     DatabaseSystem system;
