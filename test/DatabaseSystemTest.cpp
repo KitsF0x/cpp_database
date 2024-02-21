@@ -1,6 +1,7 @@
 #include <gtest/gtest.h>
 #include "DatabaseSystem.hpp"
 #include "DatabaseNotFoundException.hpp"
+#include "Database.hpp"
 
 TEST(DatabaseTest, WhenCalled_CreateDatabase_ShouldIncrementDatabaseCounterByOne)
 {
@@ -34,4 +35,26 @@ TEST(DatabaseTest, WhenCalled_DropDatabase_WhenDatabaseDoesNotExist_ShouldThrowD
 
     // Act + Assert
     EXPECT_THROW(system.dropDatabase("MyDatabase"), DatabaseNotFoundException);
+}
+
+TEST(DatabaseTest, WhenCalled_GetDatabaseByName_ShouldReturnDatabase)
+{
+    // Arrange
+    DatabaseSystem system;
+    system.createDatabase("MyDatabase");
+
+    // Act
+    Database database = system.getDatabaseByName("MyDatabase");
+
+    // Assert
+    EXPECT_EQ("MyDatabase", database.getName());
+}
+
+TEST(DatabaseTest, WhenCalled_GetDatabaseByName_WhenDatabaseDoesNotExits_ShouldThrowDatabaseNotFoundException)
+{
+    // Arrange
+    DatabaseSystem system;
+
+    // Act + Assert
+    EXPECT_THROW(system.getDatabaseByName("MyDatabase"), DatabaseNotFoundException);
 }

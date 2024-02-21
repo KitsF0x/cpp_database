@@ -2,7 +2,7 @@
 
 void DatabaseSystem::createDatabase(const std::string &name)
 {
-    databases.push_back(name);
+    databases.push_back(Database{name});
 }
 
 std::size_t DatabaseSystem::getDatabaseCount() const
@@ -12,13 +12,23 @@ std::size_t DatabaseSystem::getDatabaseCount() const
 
 void DatabaseSystem::dropDatabase(const std::string &name)
 {
-    if (std::find(databases.begin(), databases.end(), name) == databases.end())
+    auto it = std::find_if(databases.begin(), databases.end(), [name](const Database &database)
+                           { return database.getName() == name; });
+    if (it != databases.end())
     {
-        throw DatabaseNotFoundException(name);
-    }
-    else
-    {
-        auto it = std::find(databases.begin(), databases.end(), name);
         databases.erase(it);
+        return;
     }
+    throw DatabaseNotFoundException{name};
+}
+
+Database DatabaseSystem::getDatabaseByName(const std::string &name) const
+{
+    auto it = std::find_if(databases.begin(), databases.end(), [name](const Database &database)
+                           { return database.getName() == name; });
+    if (it != databases.end())
+    {
+        return *it;
+    }
+    throw DatabaseNotFoundException{name};
 }
