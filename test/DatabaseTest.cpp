@@ -4,6 +4,18 @@
 #include "TableNotFoundException.hpp"
 #include "Table.hpp"
 
+TEST(DatabaseTest, WhenCalled_Constructor_ShouldSetNameFromConstructor)
+{
+    // Arrange
+    Database database{"Database"};
+
+    // Act
+    std::string name = database.getName();
+
+    // Assert
+    EXPECT_STREQ(name.c_str(), "Database");
+}
+
 TEST(DatabaseTest, WhenCalled_CreateTable_ShouldIncrementIncrementTableCounter)
 {
     // Arrange
