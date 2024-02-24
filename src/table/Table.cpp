@@ -9,9 +9,9 @@ std::string Table::getName() const
     return "MyTable";
 }
 
-void Table::addColumn(const std::string &columnName)
+void Table::addColumn(const std::string &columnName, DataType::IType *type)
 {
-    columns.push_back(Column{columnName});
+    columns.push_back(Column{columnName, type});
 }
 
 std::size_t Table::getColumnCount() const

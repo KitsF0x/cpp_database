@@ -2,6 +2,8 @@
 
 #include "Table.hpp"
 #include "ColumnNotFoundException.hpp"
+#include "Text.hpp"
+#include "IType.hpp"
 
 TEST(TableTest, WhenCalled_AddColumn_ShouldIncrementColumnCounter)
 {
@@ -9,7 +11,7 @@ TEST(TableTest, WhenCalled_AddColumn_ShouldIncrementColumnCounter)
     Table table{"MyTable"};
 
     // Act
-    table.addColumn("MyColumn");
+    table.addColumn("MyColumn", nullptr);
 
     // Assert
     EXPECT_EQ(1, table.getColumnCount());
@@ -19,7 +21,7 @@ TEST(TableTest, WhenCalled_GetColumnByName_ShouldReturnColumn)
 {
     // Arrange
     Table table{"MyTable"};
-    table.addColumn("MyColumn");
+    table.addColumn("MyColumn", nullptr);
 
     // Act
     Column column = table.getColumnByName("MyColumn");
@@ -35,4 +37,17 @@ TEST(TableTest, WhenCalled_GetColumnByName_WhenColumnDoesNotExits_ShouldThrowCol
 
     // Act + Assert
     EXPECT_THROW(table.getColumnByName("MyColumn"), ColumnNotFoundException);
+}
+
+TEST(TableTest, WhenCalled_AddColumn_WithType_ShouldIncrementColumnCounter)
+{
+    // Arrange
+    Table table{"MyTable"};
+
+    // Act
+    table.addColumn("MyColumn", new DataType::Text());
+
+    // Assert
+    DataType::IType *type = dynamic_cast<DataType::Text *>(table.getColumnByName("MyColumn").getType());
+    EXPECT_NE(type, nullptr);
 }

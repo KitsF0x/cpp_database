@@ -6,4 +6,5 @@ target_link_libraries(${PROJECT_NAME}-ut PUBLIC
     system
     table
     column
+    datatype
 )

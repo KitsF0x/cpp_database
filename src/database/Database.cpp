@@ -2,7 +2,7 @@
 
 Database::Database(const std::string &databaseName)
 {
-    this->name = name;
+    this->name = databaseName;
 }
 
 std::string Database::getName() const
